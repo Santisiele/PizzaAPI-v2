@@ -4,35 +4,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Pizzas.API.Models;
-using Pizzas.API.Utils;
+using Usuarios.API.Models;
+using Usuarios.API.Utils;
 using System.Data.SqlClient;
 using Dapper;
-using Pizzas.API.Controllers;
 
 namespace Pizzas.API.Services
 {
-    public class BD{
-        public static List<Pizza> GetAll(){
+    public class BD2{
+        public static List<Usuarios> GetAll(){
             List<Pizza> ListaPizzas;
             string sp= "sp_GetAll";
-            using(SqlConnection BD=basededatos.GetConnection()){
+            using(SqlConnection BD=BD.GetConnection()){
                 ListaPizzas = db.Query<Pizza>(sp,commandType: commandType.StoredProcedures).ToList();
             }
             return ListaPizzas;
         }
 
-        public static Pizza ConsultaPizza(int Id){
-            Pizza MiPizza = null;
-            string sp = "sp_GetById";
-            using(SqlConnection BD=BD2.GetConnection()){
-                MiPizza = db.QueryFirstOrDefault<Pizza>(sp, new{ pId = Id}, commandType: commandType.StoredProcedures);
+        public static Usuarios GetByUserNamePassword(string UserName, string Passwordd){
+            Usuarios MiUsuario = null;
+            string sp = "sp_GetByUserNamePassword";
+            using(SqlConnection BD=BD.GetConnection()){
+                MiUsuario = db.QueryFirstOrDefault<Usuarios>(sp, new{ pUserName = UserName, pPassword=Passwordd}, commandType: commandType.StoredProcedures);
             }
-            return MiPizza;
+            return MiUsuario;
         }
 
         public static Pizza AgregarPizza(Pizza MiPizza){
-            string sp = "sp_AgregarPizzas";
+            string sp = "sp_GetByUserNamePassword";
             int temp=0;
             using(SqlConnection BD=BD.GetConnection()){
                 temp = db.Execute(sp, new{ pNombre=MiPizza.Nombre,pLibreGluten=MiPizza.LibreGluten,pImporte=MiPizza.Importe,pDescripcion=MiPizza.Descripcion}, commandType: commandType.StoredProcedures);
