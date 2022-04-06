@@ -11,7 +11,7 @@ namespace Pizzas.API.Helpers{
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 // VER ERROR DE PARAMETROS
-                .AddJson("appsettings.json",optional : true , reloadOnCharge:true);
+                .AddJsonFile("appsettings.json",optional : true);
                 config=builder.Build();
                 return config;
             }

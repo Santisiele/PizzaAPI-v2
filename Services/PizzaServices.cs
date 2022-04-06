@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using Dapper;
 using Pizzas.API.Controllers;
 
+
 namespace Pizzas.API.Services
 {
     public class BD{
@@ -17,7 +18,7 @@ namespace Pizzas.API.Services
             List<Pizza> ListaPizzas;
             string sp= "sp_GetAll";
             using(SqlConnection BD=basededatos.GetConnection()){
-                ListaPizzas = db.Query<Pizza>(sp,commandType: commandType.StoredProcedures).ToList();
+                ListaPizzas = BD.Query<Pizza>(sp, commandType:commandType.StoredProcedure).ToList();
             }
             return ListaPizzas;
         }
