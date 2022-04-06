@@ -9,7 +9,7 @@ namespace Pizzas.API.Controllers
         public static SqlConnection GetConnection(){
             SqlConnection db;
             string connectionString;
-            connectionString = ConfigurationHelper.GetConfiguration().GetValue<string>("DatabaseSettings: ConnectionString");
+            connectionString = @"Server=SANTISIELE\SQLEXPRESS; DataBase=DAI-Pizzas; Trusted_Connection=True" ;
             db= new SqlConnection(connectionString);
             return db;
         }
