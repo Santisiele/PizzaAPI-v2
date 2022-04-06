@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pizzas.API.Models;
+using Pizzas.API.Services;
 
 namespace Pizzas.API.Controllers
 {
@@ -31,7 +32,7 @@ namespace Pizzas.API.Controllers
         public IActionResult GetAll()
         {
             List<Pizza> ListaPizzas;
-            ListaPizzas=BD.GetAll();
+            ListaPizzas= BD.GetAll();
             return Ok(ListaPizzas);
         }
 
