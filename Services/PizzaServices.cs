@@ -9,7 +9,6 @@ using System.Data.SqlClient;
 using Dapper;
 using Pizzas.API.Controllers;
 using Pizzas.API.Helpers;
-using Usuarios.API.Services;
 
 
 namespace Pizzas.API.Services

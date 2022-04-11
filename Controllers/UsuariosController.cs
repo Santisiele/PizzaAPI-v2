@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Usuarios.API.Services;
-using Usuarios.API.Models;
+using Pizzas.API.Models;
+using Pizzas.API.Services;
+using Pizzas.API.Controllers;
 
-namespace Usuarios.API.Controller{
+namespace Pizzas.API.Controller{
+    [Route("login")]
     public class UsuariosController : ControllerBase{
         [HttpGet]
         public IActionResult GetAll()

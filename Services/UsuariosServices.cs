@@ -4,15 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Usuarios.API.Models;
+using Pizzas.API.Models;
 using System.Data.SqlClient;
 using Dapper;
 using Pizzas.API.Helpers;
-using Usuarios.API.Services;
 using Pizzas.API.Controllers;
 
 
-namespace Usuarios.API.Services
+namespace Pizzas.API.Services
 {
     public class BD2{
         public static List<Usuarios> GetAll(){
@@ -38,7 +37,7 @@ namespace Usuarios.API.Services
             string sp = "INSERT INTO Usuarios (Nombre,LibreGluten,Importe,Descripcion) Values(@pNombre, @pLibreGluten, @pImporte, @pDescripcion)";
             int temp=0;
             using(SqlConnection BD=basededatos.GetConnection()){
-                temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pLibreGluten=MiUsuario.LibreGluten,pImporte=MiUsuario.Importe,pDescripcion=MiUsuario.Descripcion});
+                temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token,pTokenExpirationDay=MiUsuario.TokenExpirationDay});
             }
             return new Usuarios();
         }
@@ -56,7 +55,7 @@ namespace Usuarios.API.Services
                 return UsuarioLocal;
             }else{
                     using(SqlConnection BD=basededatos.GetConnection()){
-                        temp = BD.Execute(sp, new{pId = Id, pNombre=MiUsuario.Nombre,pLibreGluten=MiUsuario.LibreGluten,pImporte=MiUsuario.Importe,pDescripcion=MiUsuario.Descripcion});
+                        temp = BD.Execute(sp, new{pId = Id, pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token,pTokenExpirationDay=MiUsuario.TokenExpirationDay});
                     }
                 return new Usuarios();
                 }

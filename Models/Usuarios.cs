@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Usuarios.API.Models{
+namespace Pizzas.API.Models{
     public class Usuarios
     {
         public int      Id                  { get; set; }
