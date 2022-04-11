@@ -4,10 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Pizzas.API.Models;
 using Usuarios.API.Services;
 using Usuarios.API.Models;
-using Usuarios.API.Controller;
 
 namespace Usuarios.API.Controller{
     public class UsuariosController : ControllerBase{
@@ -36,7 +34,7 @@ namespace Usuarios.API.Controller{
         }
 
         [HttpPost]
-        public IActionResult Create(Usuario MiUsuario)
+        public IActionResult Create(Usuarios MiUsuario)
         {
             BD2.AgregarUsuario(MiUsuario);
             return Created("/API/Usuario", new{Id=MiUsuario.Id});
@@ -68,7 +66,6 @@ namespace Usuarios.API.Controller{
                     return Ok();
                 }
             }
-        }
         }
     }
 }
