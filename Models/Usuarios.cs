@@ -10,6 +10,5 @@ namespace Pizzas.API.Models{
         public string   UserName            { get; set; }
         public string   Passwordd            { get; set; }
         public string   Token               { get; set; }
-        public DateTime   TokenExpirationDay  { get; set; }
     }
 }

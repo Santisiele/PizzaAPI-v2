@@ -34,17 +34,17 @@ namespace Pizzas.API.Services
         }
 
         public static Usuarios AgregarUsuario(Usuarios MiUsuario){
-            string sp = "INSERT INTO Usuarios (Nombre,LibreGluten,Importe,Descripcion) Values(@pNombre, @pLibreGluten, @pImporte, @pDescripcion)";
+            string sp = "INSERT INTO Usuarios (Nombre,Apellido,UserName,Passwordd,Token) Values(@pNombre,@pApellido,@pUserName,@pPasswordd,@pToken)";
             int temp=0;
             using(SqlConnection BD=basededatos.GetConnection()){
-                temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token,pTokenExpirationDay=MiUsuario.TokenExpirationDay});
+                temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token});
             }
             return new Usuarios();
         }
 
         public static Usuarios Update(int Id, Usuarios MiUsuario){
             Usuarios UsuarioLocal;
-            string sp = "UPDATE Usuarios SET  Nombre=@pNombre, LibreGluten=@pLibreGluten, Importe=@pImporte, Descripcion=@pDescripcion WHERE id=@pid";
+            string sp = "UPDATE Usuarios SET  Nombre=@pNombre,Apellido=@pApellido,UserName=@pUserName,Passwordd=@pPasswordd,Token=@pToken WHERE id=@pid";
             string sp2 = "SELECT * FROM Usuarios WHERE Id=@pId";
             int temp=0;
 
@@ -55,7 +55,7 @@ namespace Pizzas.API.Services
                 return UsuarioLocal;
             }else{
                     using(SqlConnection BD=basededatos.GetConnection()){
-                        temp = BD.Execute(sp, new{pId = Id, pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token,pTokenExpirationDay=MiUsuario.TokenExpirationDay});
+                        temp = BD.Execute(sp, new{pId = Id, pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token});
                     }
                 return new Usuarios();
                 }
@@ -79,5 +79,14 @@ namespace Pizzas.API.Services
                 return new Usuarios();
             }
         }
-    }
+
+        public static Usuarios GetByUserNamePassword(string UserName, string Passwordd){
+            Usuarios MiUsuario = null;
+            string sp = "SELECT * FROM Usuarios WHERE UserName=@pUserName, Passwordd=@pPassword";
+            using(SqlConnection BD=basededatos.GetConnection()){
+                MiUsuario = BD.QueryFirstOrDefault<Usuarios>(sp, new{ pUserName = UserName, pPasswordd = Passwordd});
+            }
+            return MiUsuario;
+        }
+}
 }

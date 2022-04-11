@@ -39,7 +39,7 @@ namespace Pizzas.API.Controller{
         public IActionResult Create(Usuarios MiUsuario)
         {
             BD2.AgregarUsuario(MiUsuario);
-            return Created("/API/Usuario", new{Id=MiUsuario.Id});
+            return Created("/login", new{Id=MiUsuario.Id});
         }
 
         [HttpPut ("{id}")]
@@ -68,6 +68,17 @@ namespace Pizzas.API.Controller{
                     return Ok();
                 }
             }
+        }
+        [HttpGet ("{Id}")]
+        public IActionResult GetByUserNamePassword(string UserName, string Passwordd)
+        {
+                Usuarios MiUsuario;
+                MiUsuario=BD2.GetByUserNamePassword(UserName,Passwordd);
+                if(MiUsuario==null){
+                    return NotFound();
+                }else{
+                    return Ok(MiUsuario);
+                }
         }
     }
 }
