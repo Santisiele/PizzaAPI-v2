@@ -9,7 +9,7 @@ namespace Pizzas.API.Controllers
         public static SqlConnection GetConnection(){
             SqlConnection db;
             string connectionString;
-            connectionString = @"Server=SANTISIELE\SQLEXPRESS; DataBase=DAI-Pizzas; Trusted_Connection=True" ;
+            connectionString = @"Server=A-AMI-31; DataBase=DAI-Pizzas; Trusted_Connection=True" ;
             db= new SqlConnection(connectionString);
             return db;
         }

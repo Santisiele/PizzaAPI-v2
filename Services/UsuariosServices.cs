@@ -34,7 +34,7 @@ namespace Pizzas.API.Services
         }
 
         public static Usuarios AgregarUsuario(Usuarios MiUsuario){
-            string sp = "INSERT INTO Usuarios (Nombre,Apellido,UserName,Passwordd,Token) Values(@pNombre,@pApellido,@pUserName,@pPasswordd,@pToken)";
+            string sp = "INSERT INTO Usuarios (Nombre,Apellido,UserName,Passwordd,Token) Values(@pNombre, @pApellido, @pUserName, @pPasswordd, @pToken)";
             int temp=0;
             using(SqlConnection BD=basededatos.GetConnection()){
                 temp = BD.Execute(sp, new{ pNombre=MiUsuario.Nombre,pApellido=MiUsuario.Apellido,pUserName=MiUsuario.UserName,pPasswordd=MiUsuario.Passwordd, pToken=MiUsuario.Token});

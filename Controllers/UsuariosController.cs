@@ -69,6 +69,8 @@ namespace Pizzas.API.Controller{
                 }
             }
         }
+        /*
+        AMBIGÜEDAD CON GETBYID
         [HttpGet ("{Id}")]
         public IActionResult GetByUserNamePassword(string UserName, string Passwordd)
         {
@@ -80,5 +82,6 @@ namespace Pizzas.API.Controller{
                     return Ok(MiUsuario);
                 }
         }
+        */
     }
 }
