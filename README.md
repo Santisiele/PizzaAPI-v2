@@ -1,3 +1,3 @@
 # Pizzas.API
 
-## Controller de pizzas terminado, CRUD de usuarios y stores procedures terminados
+## API de pizzas conectada a una base de datos SQL, con CRUD para las pizzas
